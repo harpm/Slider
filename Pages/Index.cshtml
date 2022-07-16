@@ -11,10 +11,10 @@
 <div class="container col-md-12">
     <form class="form-group">
         <input id="SearchBox" type="text" name="phrase" placeholder="Search *exmpl SongName, Artist, album, ..." class="form-control d-inline col-md-10"/>
-        <button id="search-btn" class="form-control d-inline btn-light col-md-1"><img src="img/icon0-vector-557-01.jpg" class="img-fluid"/></button>
+        <button id="search-btn" class="form-control d-inline btn-light col-md-1"><img src="img/icon0-vector-557-01.jpg" class=""/></button>
     </form>
     <ol id="search-result" class="list-group container col-md-12">
-        <li id="cont" class="list-group-item">
+        <li id="cont" class="list-group-item bg-dark">
             <ul class="nav">
                 <li class="col-md-1 list-group-item">No.</li>
                 <li class="col-md-8 list-group-item">Track name</li>
@@ -33,6 +33,7 @@
         btn.on("click", function() {
             var searchPhrase = sb.val();
             $.ajax({
+                url: 'Song/Search?phrase=' + '"' +searchPhrase + '"',
                 type: "GET",
                 success: function(response) {
                     var resultBox = $("#search-result");

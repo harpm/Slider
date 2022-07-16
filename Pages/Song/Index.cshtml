@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <h1 class="text-center text-danger">Song Page</h1>
-    <form id="song-form" enctype="multipart/form-data" class="form-group" asp-controller="Song" asp-action="AddSong">
+    <form id="songForm" enctype="multipart/form-data" class="form-group" onsubmit="return false" >
         <input name="Name" type="text" class="form-control", asp-for="Name"/>
         <br/>
         <input name="File" type="file" class="form-control" asp-for="File"/>
@@ -18,15 +18,23 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var btn = $("#create-btn");
-        btn.on("click" ,function(event) {
-            var form = $("#song-form")[0];
-            var Data = new FormData(form);
-            var req = new XMLHttpRequest();
-            req.open("POST", "Song/AddSong");
-            req.enctype = "multipart/form-data";
-            req.data = Data;
-            req.send();
+        $(document).on("click","#create-btn",function(){
+            var formData = new FormData();
+            formData.append("Name", $("#songForm input[type=text]").val());
+            formData.append("File", $("#songForm input[type=File]")[0].files[0]);
+
+            console.log(formData);
+            
+            $.ajax({
+                url: "Song/AddSong",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function() {
+                    document.alert("Uploaded Successfully!");
+                }
+            });
         });
     });
 </script>
