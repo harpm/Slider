@@ -1,0 +1,36 @@
+﻿@page
+@model Slider5.Models.View.ViewSong
+@{
+}
+
+<div class="text-center">
+    <h1 class="text-center text-danger">Song Page</h1>
+    <form id="song-form" enctype="multipart/form-data" class="form-group" asp-controller="Song" asp-action="AddSong">
+        <input name="Name" type="text" class="form-control", asp-for="Name"/>
+        <br/>
+        <input name="File" type="file" class="form-control" asp-for="File"/>
+        <br/>
+    </form>
+    <button id="create-btn" class="form-control bg-info">Create</button>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var btn = $("#create-btn");
+        btn.on("click" ,function(event) {
+            var form = $("#song-form")[0];
+            var Data = new FormData(form);
+            $.ajax({
+                url: 'song/addsong',
+                data: Data,
+                enctype: "multipart/form-data",
+                success: function(data) {
+                    console.log(data);
+                },
+                type: 'POST'
+            });
+        });
+    });
+</script>

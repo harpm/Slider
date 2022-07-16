@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <img src="img/Logo.png"/>
+</div>
+
+<div class="container col-md-12">
+    <form class="form-group">
+        <input id="SearchBox" type="text" name="SearchBox" placeholder="Search *exmpl SongName, Artist, album, ..." class="form-control"/>
+    </form>
+    <ol id="search-result" class="list-group container col-md-12">
+        <li id="cont" class="list-group-item">
+            <ul class="nav">
+                <li class="col-md-1 list-group-item">No.</li>
+                <li class="col-md-8 list-group-item">Track name</li>
+                <li class="col-md-1 list-group-item">Play</li>
+                <li class="col-md-2 list-group-item">Download</li>
+            </ul>
+        </li>
+    </ol>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var sb = $("#SearchBox");
+        sb.change(function() {
+            var searchPhrase = sb.val();
+            $.ajax({
+                url: "song/Search",
+                type: "GET",
+                data: searchPhrase,
+                success: function(response) {
+                    var resultBox = $("#search-result");
+                    var cont = $("#cont");
+                    response.forEach(function(c) {
+                        
+                        var item = document.createElement("ul");
+                        item.classList.add("nav");
+                        
+                        var id = document.createElement("li");
+                        var name = document.createElement("li");
+                        var play = document.createElement("li");
+                        var download = document.createElement("li");
+                        
+                        var playIcon = document.createElement("img");
+                        var downloadIcon = document.createElement("img");
+
+                        id.classList.add("col-md-1 list-group-item");
+                        name.classList.add("col-md-8 list-group-item");
+                        play.classList.add("col-md-1 list-group-item");
+                        download.classList.add("col-md-2 list-group-item");
+                        
+                        id.value = response["id"];
+                        name.value = response["name"];
+                        play.appendChild(playIcon);
+                        download.appendChild(downloadIcon);
+
+                        cont.appendChild(item);
+                        resultBox.appendChild(e);
+                    });
+                }
+
+            });
+        });
+    });
+</script>
