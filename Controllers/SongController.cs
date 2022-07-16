@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Slider5.Models;
@@ -22,7 +26,7 @@ namespace Slider5.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddSong(DtoSong dtoSong)
+        public async Task<ActionResult<DtoSong>> AddSong(DtoSong dtoSong)
         {
             try
             {
@@ -43,6 +47,20 @@ namespace Slider5.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpGet]
+        public ActionResult<ICollection<DtoSong>> Search(string searchPhrase)
+        {
+            try
+            {
+                var res = _service.FindAll(s => s.Name.Contains(searchPhrase)).ToList();
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
