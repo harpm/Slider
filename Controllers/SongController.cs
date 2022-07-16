@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR.Protocol;
+using Microsoft.AspNetCore.StaticFiles;
 using Slider5.Models;
 using Slider5.Models.Dto;
 using Slider5.Repository;
@@ -25,7 +29,6 @@ namespace Slider5.Controllers
             return View();
         }
 
-        [HttpPost]
         public async Task<ActionResult<DtoSong>> AddSong(DtoSong dtoSong)
         {
             try
@@ -61,6 +64,21 @@ namespace Slider5.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpGet("Download/{id}")]
+        public async Task<IActionResult> Download(int id)
+        {
+            string path = _service.Get(id).Address;
+            byte[] buff = await System.IO.File.ReadAllBytesAsync(path);
+            
+            var fileProvider = new FileExtensionContentTypeProvider();
+            if (!fileProvider.TryGetContentType(path, out string contentType))
+            {
+                return File(buff, "application/octet-stream");
+            }
+
+            return File(buff, contentType);
         }
     }
 }

@@ -23,22 +23,18 @@ namespace Slider5.Repository
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Song Find(Expression<Func<Song, bool>> predicate)
-        {
-            throw new NotImplementedException();
+            _context.Songs.Remove(_context.Songs.Find(id));
+            _context.SaveChanges();
         }
 
         public IQueryable<Song> FindAll(Expression<Func<Song, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _context.Songs.Where(predicate);
         }
 
         public Song Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Songs.Find(id);
         }
 
         public void Dispose()

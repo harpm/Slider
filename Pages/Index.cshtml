@@ -48,17 +48,19 @@
                         var download = document.createElement("li");
                         
                         var playIcon = document.createElement("img");
-                        var downloadIcon = document.createElement("img");
+                        //var downloadIcon = document.createElement("img");
 
                         id.classList.add("col-md-1 list-group-item");
                         name.classList.add("col-md-8 list-group-item");
                         play.classList.add("col-md-1 list-group-item");
-                        download.classList.add("col-md-2 list-group-item");
+                        download.classList.add("col-md-2 list-group-item link-primary");
                         
-                        id.value = response["id"];
-                        name.value = response["name"];
+                        id.value = c["id"];
+                        name.value = c["name"];
                         play.appendChild(playIcon);
-                        download.appendChild(downloadIcon);
+                        download.value = "Direct Link";
+                        download.src = 
+                        //download.appendChild(downloadIcon);
 
                         cont.appendChild(item);
                         resultBox.appendChild(e);
