@@ -52,25 +52,21 @@ namespace Slider5.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult<ICollection<DtoSong>> Search(string searchPhrase)
+        [HttpGet("[controller]/[action]/{id}")]
+        public async Task<IActionResult> Download(int id)
         {
+            string path;
+            byte[] buff;
             try
             {
-                var res = _service.FindAll(s => s.Name.Contains(searchPhrase)).ToList();
-                return Ok(res);
+                path = _service.Get(id).Address;
+                buff = await System.IO.File.ReadAllBytesAsync(path);
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest("The song isn't available!");
             }
-        }
 
-        [HttpGet("Download/{id}")]
-        public async Task<IActionResult> Download(int id)
-        {
-            string path = _service.Get(id).Address;
-            byte[] buff = await System.IO.File.ReadAllBytesAsync(path);
             
             var fileProvider = new FileExtensionContentTypeProvider();
             if (!fileProvider.TryGetContentType(path, out string contentType))
@@ -79,6 +75,20 @@ namespace Slider5.Controllers
             }
 
             return File(buff, contentType);
+        }
+
+        [HttpGet]
+        public IActionResult Search([FromQuery(Name = "phrase")] string phrase)
+        {
+            try
+            {
+                var res = _service.FindAll(s => s.Name.ToLower().Contains(phrase.ToLower())).ToList();
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

@@ -22,15 +22,11 @@
         btn.on("click" ,function(event) {
             var form = $("#song-form")[0];
             var Data = new FormData(form);
-            $.ajax({
-                url: 'song/addsong',
-                data: Data,
-                enctype: "multipart/form-data",
-                success: function(data) {
-                    console.log(data);
-                },
-                type: 'POST'
-            });
+            var req = new XMLHttpRequest();
+            req.open("POST", "Song/AddSong");
+            req.enctype = "multipart/form-data";
+            req.data = Data;
+            req.send();
         });
     });
 </script>

@@ -5,12 +5,13 @@
 }
 
 <div class="text-center">
-    <img src="img/Logo.png"/>
+    <img src="img/Slider.png"/>
 </div>
 
 <div class="container col-md-12">
     <form class="form-group">
-        <input id="SearchBox" type="text" name="SearchBox" placeholder="Search *exmpl SongName, Artist, album, ..." class="form-control"/>
+        <input id="SearchBox" type="text" name="phrase" placeholder="Search *exmpl SongName, Artist, album, ..." class="form-control d-inline col-md-10"/>
+        <button id="search-btn" class="form-control d-inline btn-light col-md-1"><img src="img/icon0-vector-557-01.jpg" class="img-fluid"/></button>
     </form>
     <ol id="search-result" class="list-group container col-md-12">
         <li id="cont" class="list-group-item">
@@ -27,13 +28,12 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        var btn = $("#search-btn");
         var sb = $("#SearchBox");
-        sb.change(function() {
+        btn.on("click", function() {
             var searchPhrase = sb.val();
             $.ajax({
-                url: "song/Search",
                 type: "GET",
-                data: searchPhrase,
                 success: function(response) {
                     var resultBox = $("#search-result");
                     var cont = $("#cont");
@@ -48,6 +48,8 @@
                         var download = document.createElement("li");
                         
                         var playIcon = document.createElement("img");
+                        playIcon.src = "../wwwroot/img/play.jpg";
+                        
                         //var downloadIcon = document.createElement("img");
 
                         id.classList.add("col-md-1 list-group-item");
@@ -66,7 +68,6 @@
                         resultBox.appendChild(e);
                     });
                 }
-
             });
         });
     });
