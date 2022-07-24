@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Slider\\Slider5\\Slider5.csproj": {}
+    "F:\\Tutorials\\C#\\ASP.NET\\Projects\\Slider5\\Slider5.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Slider\\Slider5\\Slider5.csproj": {
+    "F:\\Tutorials\\C#\\ASP.NET\\Projects\\Slider5\\Slider5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Slider\\Slider5\\Slider5.csproj",
+        "projectUniqueName": "F:\\Tutorials\\C#\\ASP.NET\\Projects\\Slider5\\Slider5.csproj",
         "projectName": "Slider5",
-        "projectPath": "C:\\Projects\\Slider\\Slider5\\Slider5.csproj",
-        "packagesPath": "C:\\Users\\afagh\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Slider\\Slider5\\obj\\",
+        "projectPath": "F:\\Tutorials\\C#\\ASP.NET\\Projects\\Slider5\\Slider5.csproj",
+        "packagesPath": "C:\\Users\\Arsalan\\.nuget\\packages\\",
+        "outputPath": "F:\\Tutorials\\C#\\ASP.NET\\Projects\\Slider5\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\afagh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arsalan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,12 +85,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.13, 5.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -99,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

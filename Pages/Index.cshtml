@@ -22,6 +22,14 @@
                 <li class="col-md-2 list-group-item">Download</li>
             </ul>
         </li>
+        <li class="list-group-item bg-dark">
+            <ul class="nav">
+                <li class="col-md-1 list-group-item">1</li>
+                <li class="col-md-8 list-group-item">Fear of the dark</li>
+                <li class="col-md-1 list-group-item"><img class="play-img" src="img/Play.png"/></li>
+                <li class="col-md-2 list-group-item"><a class="btn-link download-link"><img src="img/Download.png"/></a></li>
+            </ul>
+        </li>
     </ol>
 
 </div>
@@ -37,36 +45,8 @@
                 type: "GET",
                 success: function(response) {
                     var resultBox = $("#search-result");
-                    var cont = $("#cont");
-                    response.forEach(function(c) {
-                        
-                        var item = document.createElement("ul");
-                        item.classList.add("nav");
-                        
-                        var id = document.createElement("li");
-                        var name = document.createElement("li");
-                        var play = document.createElement("li");
-                        var download = document.createElement("li");
-                        
-                        var playIcon = document.createElement("img");
-                        playIcon.src = "../wwwroot/img/play.jpg";
-                        
-                        //var downloadIcon = document.createElement("img");
+                    response.forEach(function (c) {
 
-                        id.classList.add("col-md-1 list-group-item");
-                        name.classList.add("col-md-8 list-group-item");
-                        play.classList.add("col-md-1 list-group-item");
-                        download.classList.add("col-md-2 list-group-item link-primary");
-                        
-                        id.value = c["id"];
-                        name.value = c["name"];
-                        play.appendChild(playIcon);
-                        download.value = "Direct Link";
-                        download.src = 
-                        //download.appendChild(downloadIcon);
-
-                        cont.appendChild(item);
-                        resultBox.appendChild(e);
                     });
                 }
             });
